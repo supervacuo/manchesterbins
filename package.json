@@ -1,0 +1,32 @@
+{
+  "name": "manchesterbins",
+  "version": "0.0.1",
+  "description": "Bookmarkable links to bin collection timetables in Manchester",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/supervacuo/manchesterbins.git"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "keywords": [ ],
+  "author": "Carl van Tonder <carl@supervacuo.com>",
+  "license": "AGPL",
+  "bugs": {
+    "url": "https://github.com/supervacuo/manchesterbins/issues"
+  },
+  "engines": {
+    "node": "0.10.15",
+    "npm": "1.3.5"
+  },
+  "dependencies": {
+    "express": "4.4.3",
+    "express-session": "v1.3.1",
+    "superagent": "0.18.0",
+    "cheerio": "0.18.0",
+    "jade": "0.35.0",
+    "stylus": "0.49.3",
+    "nib": "1.0.4"
+  }
+}

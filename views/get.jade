@@ -1,0 +1,53 @@
+extend base
+
+block script
+	script(type="text/javascript", src="//code.jquery.com/jquery-2.1.3.min.js")
+	script(type="text/javascript", src="/public/js/selected.js")
+	script(type="text/javascript").
+		$(document).ready(function(){
+			$("#uprn").selected(function(e){
+				var id = $(e).val(),
+					query = "#{query}";
+				window.location.href = '/id/' + encodeURIComponent(id) + 
+					((query !== 'undefined' && query !== '') ? '?query=' + encodeURIComponent(query) : '');
+			});
+		});
+
+block content
+	if error
+		div#explanation
+			h2 Nothing found
+			p
+				| You can try a different address on the <a href="/">homepage</a>.
+	else
+		if uprns
+			form#find_address
+				p
+					label(for=uprn) Showing collections for 
+					select#uprn
+						for uprn in uprns
+							option(value=uprn.id)= uprn.name
+				p.info (usually the same for the whole postcode)
+
+		div.collection_container
+			if collection_for
+				h3= collection_for
+
+			| !{collection}  
+
+		if return_to_query
+			nav#return_to_query
+				p 
+					| <a href="/find/!{return_to_query}">Return to list</a>
+
+		div#explanation
+			h2 What's this?
+			p 
+				| This website gets information from Manchester City Council's
+				| <a href="http://www.manchester.gov.uk/bincollections">
+				| "Check your bin collection dates" tool</a> and 
+				| displays it (on pages like this one).
+			p
+				| Unlike the MCC site, you can bookmark this page as a reminder.
+			p
+				| See the "<a href="/about">about</a>" page for details.

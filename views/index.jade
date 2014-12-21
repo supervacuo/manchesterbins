@@ -1,0 +1,19 @@
+extend base
+
+block content
+  section#intro
+    h3 Shortcuts to bin collection information in Manchester
+
+    p 
+      | This website gets information from Manchester City Council's
+      | <a href="http://www.manchester.gov.uk/bincollections">
+      | "Check your bin collection dates" tool</a>.
+      | See the "<a href="/about">about</a>" page for details.
+
+  form(method='get', action='/find/')#find
+    h2 Look up your collection
+
+    p
+      label(for="query") Street / postcode
+      input(name='query', placeholder='e.g. Stockport Road')
+      button Go

@@ -1,0 +1,55 @@
+extend base
+
+block content
+	div#about
+		p 
+			| This website retreives data from the (not bad) Manchester City Council 
+			| <a href="http://www.manchester.gov.uk/bincollections">
+			| "Check your bin collection dates" tool</a> and displays it in a way that
+			| you might find more useful. 
+		p
+			| MCC themselves could probably make these changes themselves with not too
+			| much effort but they 
+			| <a href="http://www.manchestereveningnews.co.uk/news/cameron-slashes-manchesters-spending-power-8313554">
+			| might have bigger things to worry about</a> and I needed to learn
+			| NodeJS.
+		p
+			| Inspired by <a href="http://traintimes.org.uk/">traintimes.org.uk</a>,
+			| and built using <a href="http://nodejs.org/">NodeJS</a> and 
+			| <a href="http://expressjs.com/">Express</a>.
+		p
+			| Site code available under
+			| <a href="https://www.gnu.org/licenses/agpl-3.0.html">
+			| GNU Affero General Public License</a> on 
+			| <a href="https://github.com/supervacuo/manchesterbins">GitHub</a>.
+	
+		h2 What's new?
+
+		ul
+			li 
+				| Bookmarkable URLs, e.g. <code>http://binfo.m19.org.uk/id/000077224225</code>
+				| &ndash; so you can quickly check the next schedule from your computer
+				| or phone
+			li Widget to embed on a webpage, e.g.
+				pre
+					|&lt;iframe src="http://binfo.m19.org.uk/id/M19+3AL"
+					|   width="300" height="200"&gt;&lt;/iframe&gt;
+
+		h2 Coming soon!
+
+		ul
+			li 
+				| Even simpler links, e.g.  
+				| <code>http://binfo.m19.org.uk/M19+3AL/10</code>
+				| (for number 10 Eltham St).
+			li 
+				| JSON API to add exciting bin collection data to your exciting
+				| application.
+			li 
+				| <code>.ics</code> web calendar links to put reminders in your
+				| calendar and never be surrounded by piles of recycling again!
+			li 
+				| Geo-location: use your phone GPS instead of entering an address.
+			li 
+				| Link to details of the local recycling centre for items not collected
+				| by the council contractor.
