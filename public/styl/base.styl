@@ -1,0 +1,213 @@
+column-width = 80px
+gutter-width = 20px
+columns = 6
+
+@import grid;
+@import 'nib/reset';
+
+$white = #FFF
+$grey = #EFEFEF
+$black = #050505
+$green = #40D474
+$green-d = darken($green, 30%)
+$green-dd = darken($green, 80%)
+
+//$blue = #40A0D4
+
+@font-face
+	font-family:'fedra'
+	src: url('/public/fnt/WF-020550-002332-000007.eot')
+	src: url('/public/fnt/WF-020550-002332-000007.eot?#iefix') format('embedded-opentype'), url('/public/fnt/WF-020550-002332-000007.woff') format('woff'), url('/public/fnt/WF-020550-002332-000007.ttf') format('truetype')
+	font-weight: normal
+	font-style: normal
+
+@font-face
+	font-family:'fedra'
+	src: url('/public/fnt/WF-020550-002332-000008.eot')
+	src: url('/public/fnt/WF-020550-002332-000008.eot?#iefix') format('embedded-opentype'), url('/public/fnt/WF-020550-002332-000008.woff') format('woff'), url('/public/fnt/WF-020550-002332-000008.ttf') format('truetype')
+	font-weight: normal
+	font-style: italic
+
+@font-face
+	font-family:'fedra'
+	src: url('/public/fnt/WF-020550-002332-000025.eot')
+	src: url('/public/fnt/WF-020550-002332-000025.eot?#iefix') format('embedded-opentype'), url('/public/fnt/WF-020550-002332-000025.woff') format('woff'), url('/public/fnt/WF-020550-002332-000025.ttf') format('truetype')
+	font-weight: bold
+	font-style: normal
+
+// px
+$regular = 16
+$row_height = 20
+
+// ratios
+$x-large = 2.75
+$larger = 1.95
+$large = 1.15
+$small = 0.75
+
+$row_ratio = ($row_height / $regular)
+
+h1
+	font-size: ($x-large)em
+	line-height: (3 * $row_ratio / $x-large)
+	margin: unit($row_ratio / $x-large, 'em') 0
+	text-transform: uppercase
+
+h2
+	font-size: ($larger)em
+	line-height: (2* $row_ratio / $larger)
+	margin: unit($row_ratio / $larger, 'em') 0
+
+h3
+	font-size: ($large)em
+	line-height: ($row_ratio / $large)
+	margin: unit($row_ratio / $large, 'em') 0
+
+p, li
+	font-size: ($regular)px
+	line-height: $row_ratio
+	margin: unit($row_ratio, 'em') 0
+
+a
+	text-decoration: none
+	color: $green-d
+	&:visited
+		color: $green-d
+
+pre, code
+	background: $grey
+
+pre
+	padding: 0.1em
+
+// general structure
+
+body
+	-webkit-font-smoothing: antialiased; 
+	font-family: "fedra","Helvetica Neue","Helvetica"
+	color: $black
+	padding: 0
+	margin: 0
+
+section#site-content
+	width: total-width
+	margin: unit($row_ratio * 2, 'em') auto 0 auto
+
+header#main
+	column(6)
+	h1
+		border-bottom: 4px solid $green-d
+		a
+			color: $green-dd
+		span
+			font-size: ($small)rem
+			font-style: italic
+			margin-left: 20px
+
+footer#main
+	column(3)
+	offset(3)
+	margin-top: unit($row_ratio * 2, 'em')
+	border-top: 2px solid $black
+	background: $grey
+	box-sizing: border-box
+	padding: unit($row_ratio, 'em')
+	
+
+// "index" page
+
+section#intro
+	column(6)
+
+form#find
+	column(6)
+
+	label, input, button
+		padding: 0 1.5em
+		line-height: unit($row_ratio / $large * 3, 'rem')
+		font-size: ($large)rem
+		vertical-align: middle
+		display: inline-block
+		border: 0
+
+	label
+		border-radius: 60px 0px 0px 60px
+		background: lighten($green, 80%)
+		
+	input
+		width: 10em
+		background: $grey
+
+	button
+		border-radius: 0px 60px 60px 0px
+		background: $green-d
+		color: $white
+
+
+// "find" page
+
+form#find_address
+	column(6)
+	border: 2px solid lighten($green, 30%)
+	border-width: 0 2px 2px 0
+	background-color: $grey
+
+	p
+		padding: 0 1em
+
+	select
+		max-width: 360px
+
+	p.info
+		font-style: italic
+		display: block
+		font-size: small
+		margin-top: unit(-0.5 * $row_ratio / $small, 'em')
+		text-indent: 2em
+
+div.collection_container
+	column(4)
+	offset(1)
+	margin-top: unit($row_ratio, 'em')
+
+	h3
+		margin: 0
+
+	div.collection
+		padding-left: 40px !important
+		.caption
+			font-weight: bold
+
+		margin-top: unit($row_ratio, 'em')
+
+		p
+			margin: 0
+
+nav#return_to_query
+	column(2)
+	offset(4)
+	p
+		margin-bottom: 0
+		a
+			color: $white
+			background: $green-d
+			display: inline-block
+			border-radius: unit(1.5 * $row_ratio / $larger, 'em')
+			font-size: ($large)em
+			line-height: (3* $row_ratio / $larger)
+			padding: 0 1em
+
+div#explanation
+	column(6)
+	margin-top: unit($row_ratio * 2, 'em')
+	border: 2px solid $green-dd
+	border-width: 2px 0 0 2px
+	padding: unit($row_ratio, 'em') 0 0 unit($row_ratio, 'em')
+	box-sizing: border-box
+
+	h2 
+		margin-top: 0
+
+// "about" page
+div#about
+	column(6)
