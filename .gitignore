@@ -17,5 +17,6 @@ npm-debug.log
 /node_modules
 
 # Extra ignores
-components
+/components
+/public/*.css
 .DS_Store
