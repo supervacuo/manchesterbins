@@ -136,6 +136,7 @@ form#find input,
 form#find button {
   padding: 0 1.5em;
   line-height: 3.260869565217393rem;
+  height: 3.260869565217393rem;
   font-size: 1.15rem;
   vertical-align: middle;
   display: inline-block;
