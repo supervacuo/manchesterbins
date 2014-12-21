@@ -5,6 +5,8 @@ columns = 6
 @import grid;
 @import 'nib/reset';
 
+global-reset()
+
 $white = #FFF
 $grey = #EFEFEF
 $black = #050505
@@ -35,6 +37,8 @@ $green-dd = darken($green, 80%)
 	font-weight: bold
 	font-style: normal
 
+@import url(http://fonts.googleapis.com/css?family=Inconsolata);
+
 // px
 $regular = 16
 $row_height = 20
@@ -52,16 +56,19 @@ h1
 	line-height: (3 * $row_ratio / $x-large)
 	margin: unit($row_ratio / $x-large, 'em') 0
 	text-transform: uppercase
+	font-weight: bold
 
 h2
 	font-size: ($larger)em
 	line-height: (2* $row_ratio / $larger)
 	margin: unit($row_ratio / $larger, 'em') 0
+	font-weight: bold
 
 h3
 	font-size: ($large)em
 	line-height: ($row_ratio / $large)
 	margin: unit($row_ratio / $large, 'em') 0
+	font-weight: bold
 
 p, li
 	font-size: ($regular)px
@@ -76,8 +83,7 @@ a
 
 pre, code
 	background: $grey
-
-pre
+	font-family: 'Inconsolata', monospace
 	padding: 0.1em
 
 // general structure
