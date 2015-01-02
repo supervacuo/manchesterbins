@@ -1,0 +1,32 @@
+---
+- hosts: all
+  sudo: True
+  vars_files:
+    - ~/Projects/ansible/vars/defaults.yml
+    - vars.yml
+  tasks:
+   - name: project | checkout
+     git: >
+       repo={{ project.repo }}
+       dest={{ project.root }}/src
+
+   - name: selinux | restorecon
+     command: restorecon -R {{ project.root }}
+     when: ansible_selinux.status == "enabled"
+
+   - name: project | root | check permissions
+     file:
+       path: "{{ project.root }}"
+       state: directory
+       recurse: yes
+       owner: "{{ project.name }}"
+       group: "{{ project.name }}"
+
+   - name: npm | install
+     npm: path="{{ project.root }}/src"
+     notify: restart nodejs
+     sudo_user: "{{ project.name }}"
+
+  handlers:
+    - name: restart nodejs
+      service: name=node-{{ project.name }} state=restarted

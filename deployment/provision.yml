@@ -1,0 +1,59 @@
+---
+- hosts: all
+  sudo: True
+  vars_files:
+    - ~/Projects/ansible/vars/defaults.yml
+    - vars.yml
+  roles:
+    - nginx 
+  tasks:
+   - name: yum | nodejs | install
+     yum: name={{ item }} state=installed
+     with_items:
+       - nodejs
+       - npm
+
+   - name: project | root | create
+     file: path={{ project.root }} state=directory owner=nginx group=nginx
+
+   - name: auth | create user
+     user: >
+       home={{ project.root }}/home/
+       name={{ project.name }} 
+       state=present
+       system=yes
+       groups=developers
+
+   - name: project | root | permissions
+     file:
+       path: "{{ project.root }}"
+       state: directory
+       owner: "{{ project.name }}"
+       group: "{{ project.name }}"
+
+   - name: project | pid dir | create
+     file: >
+       path=/var/run/{{ project.name }} 
+       state=directory 
+       owner="{{ project.name }}"
+       group="{{ project.name }}"
+
+   - name: nginx | config | copy
+     template:
+       src: "etc%nginx%conf.d%{{ project.name }}.conf" 
+       dest: "/etc/nginx/conf.d/{{ project.name }}.conf"
+     notify: restart nginx
+
+   - name: systemd | service | copy
+     template:
+       src: "etc%systemd%system%node-{{ project.name }}.service" 
+       dest: "/etc/systemd/system/node-{{ project.name }}.service"
+     notify: reload systemd
+
+   - name: selinux | setsebool | allow httpd network
+     command: setsebool -P httpd_can_network_connect 1
+     when: ansible_selinux.status == "enabled"
+
+  handlers:
+    - name: reload systemd
+      command: systemctl daemon-reload

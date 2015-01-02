@@ -1,0 +1,13 @@
+[Unit]
+Description=Manchester bins (NodeJS / forever)
+Requires=network.target
+After=network.target
+ 
+[Service]
+Type=forking
+WorkingDirectory={{ project.root }}/src
+ExecStart={{ project.root }}/src/node_modules/forever/bin/forever start --pidFile /var/run/{{ project.name }}/{{ project.name }}.pid app.js
+ExecStop={{ project.root }}/src/node_modules/forever/bin/forever stop app.js
+PIDFile=/var/run/{{ project.name }}/{{ project.name }}.pid
+User={{ project.name }}
+Group={{ project.name }}

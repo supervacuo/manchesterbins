@@ -1,0 +1,8 @@
+---
+project:
+  name: manchesterbins
+  root: /var/www/manchesterbins
+  repo: https://github.com/supervacuo/manchesterbins.git
+  domain: binfo.m19.org.uk
+
+virtualenv: "{{ project.root }}/venv"
