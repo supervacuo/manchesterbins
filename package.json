@@ -10,7 +10,7 @@
   "scripts": {
     "test": "make test"
   },
-  "keywords": [ ],
+  "keywords": [],
   "author": "Carl van Tonder <carl@supervacuo.com>",
   "license": "AGPL",
   "bugs": {
@@ -28,6 +28,7 @@
     "jade": "0.35.0",
     "stylus": "0.49.3",
     "nib": "1.0.4",
-    "serve-favicon": "2.0.1"
+    "serve-favicon": "2.0.1",
+    "forever": "~0.14.0"
   }
 }
