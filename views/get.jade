@@ -38,8 +38,13 @@ block content
 
 			| !{collection}  
 
+		if uprns
+			nav.secondary
+				p 
+					| <a href="/id/!{uprns[0].id}">Link here</a>
+
 		if return_to_query
-			nav#return_to_query
+			nav.secondary
 				p 
 					| <a href="/find/!{return_to_query}">Return to list</a>
 
