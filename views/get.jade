@@ -2,12 +2,13 @@ extend base
 
 block script
 	script(type="text/javascript", src="//code.jquery.com/jquery-2.1.3.min.js")
-	script(type="text/javascript", src="/public/js/selected.js")
 	script(type="text/javascript").
 		$(document).ready(function(){
-			$("#uprn").selected(function(e){
-				var id = $(e).val(),
+			$("#uprn").change(function(e){
+				var id = $(e.target).val(),
 					query = "#{query}";
+				if (id == 0)
+					return;
 				window.location.href = '/id/' + encodeURIComponent(id) + 
 					((query !== 'undefined' && query !== '') ? '?query=' + encodeURIComponent(query) : '');
 			});
@@ -24,10 +25,12 @@ block content
 			form#find_address
 				p
 					label(for=uprn) Showing collections for 
+						strong !{uprns[0].name},
 					select#uprn
-						for uprn in uprns
+						option(value=0) switch to
+						for uprn in uprns.slice(1)
 							option(value=uprn.id)= uprn.name
-				p.info (usually the same for the whole postcode)
+					p.info (usually similar across a postcode)
 
 		div.collection_container
 			if collection_for
