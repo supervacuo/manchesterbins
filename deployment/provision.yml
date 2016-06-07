@@ -50,6 +50,12 @@
        dest: "/etc/systemd/system/node-{{ project.name }}.service"
      notify: reload systemd
 
+   - name: systemd | tmpfiles.d | copy
+     template:
+       src: "etc%tmpfiles.d%{{ project.name }}.conf"
+       dest: "/etc/tmpfiles.d/{{ project.name }}.conf"
+     notify: tmpfiles
+
    - name: selinux | setsebool | allow httpd network
      command: setsebool -P httpd_can_network_connect 1
      when: ansible_selinux.status == "enabled"
@@ -57,3 +63,6 @@
   handlers:
     - name: reload systemd
       command: systemctl daemon-reload
+
+    - name: tmpfiles
+      command: systemd-tmpfiles --create
